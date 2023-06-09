@@ -167,5 +167,8 @@ cdef class Whisper:
     
     def set_params(self, options):
         
-        self.params.language = options.pop("language", self.params.language)
+        if options["language"]:
+            self.params.language = options["language"]
+        
+
 
