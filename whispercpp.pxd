@@ -61,7 +61,7 @@ cdef extern from "whisper.h" nogil:
         int max_tokens
         _Bool speed_up
         int audio_ctx
-        whisper_token* prompt_tokens
+        int* prompt_tokens
         int prompt_n_tokens
         char* language
         anon_2 greedy
