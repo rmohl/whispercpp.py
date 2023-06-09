@@ -132,8 +132,9 @@ cdef class Whisper:
         params = {}
         prompt_tokens = []
         
-#         for token in self.params.prompt_tokens:
-            
+        cdef int prompt_token_len = sizeof(self.params.prompt_tokens) / sizeof(int)
+        for i in prompt_token_len:
+            prompt_tokens.append(self.params.prompt_tokens[i])
         
         params.update({
             "n_threads": self.params.n_threads,
@@ -154,7 +155,7 @@ cdef class Whisper:
             "max_tokens": self.params.max_tokens,
             "speed_up": self.params.speed_up,
             "audio_ctx": self.params.audio_ctx,
-#             "prompt_tokens": self.params.prompt_tokens,
+            "prompt_tokens": prompt_tokens,
             "prompt_n_tokens": self.params.prompt_n_tokens,
             "language": self.params.language
         })
