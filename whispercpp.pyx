@@ -132,8 +132,9 @@ cdef class Whisper:
         params = {}
         prompt_tokens = []
         
-        cdef double prompt_token_len = sizeof(self.params.prompt_tokens) / sizeof(int)
-        for i in prompt_token_len:
+        cdef int prompt_token_len = sizeof(self.params.prompt_tokens) // sizeof(int)
+#         cdef int a = <int>prompt_token_len
+        for i in range(prompt_token_len):
             prompt_tokens.append(self.params.prompt_tokens[i])
         
         params.update({
