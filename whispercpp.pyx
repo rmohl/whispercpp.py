@@ -167,8 +167,45 @@ cdef class Whisper:
     
     def set_params(self, options):
         
+        if options["n_threads"]:
+            self.params.n_threads = options["n_threads"]
+        if options["n_max_text_ctx"]:
+            self.params.n_max_text_ctx = options["n_max_text_ctx"]
+        if options["offset_ms"]:
+            self.params.offset_ms = options["offset_ms"]
+        if options["duration_ms"]:
+            self.params.duration_ms = options["duration_ms"]
+        if options["translate"]:
+            self.params.translate = options["translate"]
+        if options["no_context"]:
+            self.params.no_context = options["no_context"]
+        if options["single_segment"]:
+            self.params.single_segment = options["single_segment"]
+        if options["print_special"]:
+            self.params.print_special = options["print_special"]
+        if options["print_progress"]:
+            self.params.print_progress = options["print_progress"]
+        if options["print_realtime"]:
+            self.params.print_realtime = options["print_realtime"]
+        if options["print_timestamps"]:
+            self.params.print_timestamps = options["print_timestamps"]
+        if options["token_timestamps"]:
+            self.params.token_timestamps = options["token_timestamps"]
+        if options["thold_pt"]:
+            self.params.thold_pt = options["thold_pt"]
+        if options["thold_ptsum"]:
+            self.params.thold_ptsum = options["thold_ptsum"]
+        if options["max_len"]:
+            self.params.max_len = options["max_len"]
+        if options["max_tokens"]:
+            self.params.max_tokens = options["max_tokens"]
+        if options["speed_up"]:
+            self.params.speed_up = options["speed_up"]
+        if options["audio_ctx"]:
+            self.params.audio_ctx = options["audio_ctx"]
+        if options["prompt_tokens"]:
+            self.params.prompt_tokens = options["prompt_tokens"]
+        if options["prompt_n_tokens"]:
+            self.params.prompt_n_tokens = options["prompt_n_tokens"]
         if options["language"]:
             self.params.language = options["language"]
-        
-
-
