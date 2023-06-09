@@ -204,7 +204,7 @@ cdef class Whisper:
         if options["audio_ctx"]:
             self.params.audio_ctx = options["audio_ctx"]
         if options["prompt_tokens"]:
-            self.params.prompt_tokens = (int*)(options["prompt_tokens"])
+            self.params.prompt_tokens = <int*>options["prompt_tokens"]
         if options["prompt_n_tokens"]:
             self.params.prompt_n_tokens = options["prompt_n_tokens"]
         if options["language"]:
