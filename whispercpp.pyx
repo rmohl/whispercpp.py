@@ -137,8 +137,8 @@ cdef class Whisper:
         print("len: " + str(prompt_token_len))
         for i in range(prompt_token_len):
             print(i)
-            print(self.params.prompt_tokens[i])
-            prompt_tokens.append(self.params.prompt_tokens[i])
+            print(*(self.params.prompt_tokens+i))
+            prompt_tokens.append(*(self.params.prompt_tokens+i))
         
         params.update({
             "n_threads": self.params.n_threads,
