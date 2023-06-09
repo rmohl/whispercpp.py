@@ -127,5 +127,12 @@ cdef class Whisper:
         return [
             whisper_full_get_segment_text(self.ctx, i).decode() for i in range(n_segments)
         ]
+    
+    def get_params(self):
+        params = {}
+        
+        params.update({"language": self.params.language})
+        
+        return params
 
 
