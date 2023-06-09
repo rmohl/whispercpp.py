@@ -131,7 +131,29 @@ cdef class Whisper:
     def get_params(self):
         params = {}
         
-        params.update({"language": self.params.language})
+        params.update({
+            "n_threads": self.params.n_threads,
+            "n_max_text_ctx": self.params.n_max_text_ctx,
+            "offset_ms": self.params.offset_ms,
+            "duration_ms": self.params.duration_ms,
+            "translate": self.params.translate,
+            "no_context": self.params.no_context,
+            "single_segment": self.params.single_segment,
+            "print_special": self.params.print_special,
+            "print_progress": self.params.print_progress,
+            "print_realtime": self.params.print_realtime,
+            "print_timestamps": self.params.print_timestamps,
+            "token_timestamps": self.params.token_timestamps,
+            "thold_pt": self.params.thold_pt,
+            "thold_ptsum": self.params.thold_ptsum,
+            "max_len": self.params.max_len,
+            "max_tokens": self.params.max_tokens,
+            "speed_up": self.params.speed_up,
+            "audio_ctx": self.params.audio_ctx,
+            "prompt_tokens": self.params.prompt_tokens,
+            "prompt_n_tokens": self.params.prompt_n_tokens,
+            "language": self.params.language
+        })
         
         return params
 
