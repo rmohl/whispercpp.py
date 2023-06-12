@@ -170,41 +170,41 @@ cdef class Whisper:
         cdef int *prompt_tokens_c
         
         if "n_threads" in options:
-            self.params.n_threads = options.["n_threads"]
+            self.params.n_threads = options["n_threads"]
         if "n_max_text_ctx" in options:
-            self.params.n_max_text_ctx = options.["n_max_text_ctx"]
+            self.params.n_max_text_ctx = options["n_max_text_ctx"]
         if "offset_ms" in options:
-            self.params.offset_ms = options.["offset_ms"]
+            self.params.offset_ms = options["offset_ms"]
         if "duration_ms" in options:
-            self.params.duration_ms = options.["duration_ms"]
+            self.params.duration_ms = options["duration_ms"]
         if "translate" in options:
-            self.params.translate = options.["translate"]
+            self.params.translate = options["translate"]
         if "no_context" in options:
-            self.params.no_context = options.["no_context"]
+            self.params.no_context = options["no_context"]
         if "single_segment" in options:
-            self.params.single_segment = options.["single_segment"]
+            self.params.single_segment = options["single_segment"]
         if "print_special" in options:
-            self.params.print_special = options.["print_special"]
+            self.params.print_special = options["print_special"]
         if "print_progress" in options:
-            self.params.print_progress = options.["print_progress"]
+            self.params.print_progress = options["print_progress"]
         if "print_realtime" in options:
-            self.params.print_realtime = options.["print_realtime"]
+            self.params.print_realtime = options["print_realtime"]
         if "print_timestamps" in options:
-            self.params.print_timestamps = options.["print_timestamps"]
+            self.params.print_timestamps = options["print_timestamps"]
         if "token_timestamps" in options:
-            self.params.token_timestamps = options.["token_timestamps"]
+            self.params.token_timestamps = options["token_timestamps"]
         if "thold_pt" in options:
-            self.params.thold_pt = options.["thold_pt"]
+            self.params.thold_pt = options["thold_pt"]
         if "thold_ptsum" in options:
-            self.params.thold_ptsum = options.["thold_ptsum"]
+            self.params.thold_ptsum = options["thold_ptsum"]
         if "max_len" in options:
-            self.params.max_len = options.["max_len"]
+            self.params.max_len = options["max_len"]
         if "max_tokens" in options:
-            self.params.max_tokens = options.["max_tokens"]
+            self.params.max_tokens = options["max_tokens"]
         if "speed_up" in options:
-            self.params.speed_up = options.["speed_up"]
+            self.params.speed_up = options["speed_up"]
         if "audio_ctx" in options:
-            self.params.audio_ctx = options.["audio_ctx"]
+            self.params.audio_ctx = options["audio_ctx"]
         if "prompt_tokens" in options:
             prompt_tokens_py = options["prompt_tokens"]
             arr_length = len(prompt_tokens_py)
@@ -213,6 +213,6 @@ cdef class Whisper:
                 prompt_tokens_c[i] = prompt_tokens_py[i]
             self.params.prompt_tokens = prompt_tokens_c
         if "prompt_n_tokens" in options:
-            self.params.prompt_n_tokens = options.["prompt_n_tokens"]
+            self.params.prompt_n_tokens = options["prompt_n_tokens"]
         if "language" in options:
-            self.params.language = options.["language"]
+            self.params.language = options["language"]
