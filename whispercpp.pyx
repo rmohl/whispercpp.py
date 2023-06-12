@@ -140,8 +140,8 @@ cdef class Whisper:
             prompt_tokens.append(<int>self.params.prompt_tokens[i])
         
         # convert language bytes to str
-        language = self.params.language
-        decoded_lan = language.decode("UTF-8")
+#         language = self.params.language
+#         decoded_lan = language.decode("UTF-8")
         
         # filling params dict
         params.update({
@@ -165,7 +165,7 @@ cdef class Whisper:
             "audio_ctx": self.params.audio_ctx,
             "prompt_tokens": prompt_tokens,
             "prompt_n_tokens": self.params.prompt_n_tokens,
-            "language": decoded_lan
+            "language": self.params.language
         })
         
         return params
@@ -218,6 +218,7 @@ cdef class Whisper:
             self.params.prompt_tokens = prompt_tokens_c
             self.params.prompt_n_tokens = arr_length
         if "language" in options:
-            encoded_lan = options["language"].encode("UTF-8")
-            if encoded_lan:
-                self.params.language = encoded_lan
+#             encoded_lan = options["language"].encode("UTF-8")
+            
+#             if encoded_lan:
+            self.params.language = b"'"+options["language"]+"'"
