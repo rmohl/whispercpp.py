@@ -131,16 +131,16 @@ cdef class Whisper:
     
     def get_params(self):
         params = {}
+        prompt_tokens = []
         
         cdef int prompt_token_len = <int>(sizeof(self.params.prompt_tokens) / sizeof(int))
 
         print("len: " + str(prompt_token_len))
         cdef int i
-        prompt_tokens = []
         for i in range(prompt_token_len):
             print(i)
-            print(self.params.prompt_tokens[i])
-            prompt_tokens.append(self.params.prompt_tokens[i])
+            print(<int>self.params.prompt_tokens[i])
+            prompt_tokens.append(<int>self.params.prompt_tokens[i])
         
         params.update({
             "n_threads": self.params.n_threads,
