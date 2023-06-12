@@ -167,52 +167,33 @@ cdef class Whisper:
         return params
     
     def set_params(self, options):
-#         cdef int *prompt_tokens_c
+        cdef int *prompt_tokens_c
         
-        if options["n_threads"]:
-            self.params.n_threads = options["n_threads"]
-        if options["n_max_text_ctx"]:
-            self.params.n_max_text_ctx = options["n_max_text_ctx"]
-        if options["offset_ms"]:
-            self.params.offset_ms = options["offset_ms"]
-        if options["duration_ms"]:
-            self.params.duration_ms = options["duration_ms"]
-        if options["translate"]:
-            self.params.translate = options["translate"]
-        if options["no_context"]:
-            self.params.no_context = options["no_context"]
-        if options["single_segment"]:
-            self.params.single_segment = options["single_segment"]
-        if options["print_special"]:
-            self.params.print_special = options["print_special"]
-        if options["print_progress"]:
-            self.params.print_progress = options["print_progress"]
-        if options["print_realtime"]:
-            self.params.print_realtime = options["print_realtime"]
-        if options["print_timestamps"]:
-            self.params.print_timestamps = options["print_timestamps"]
-        if options["token_timestamps"]:
-            self.params.token_timestamps = options["token_timestamps"]
-        if options["thold_pt"]:
-            self.params.thold_pt = options["thold_pt"]
-        if options["thold_ptsum"]:
-            self.params.thold_ptsum = options["thold_ptsum"]
-        if options["max_len"]:
-            self.params.max_len = options["max_len"]
-        if options["max_tokens"]:
-            self.params.max_tokens = options["max_tokens"]
-        if options["speed_up"]:
-            self.params.speed_up = options["speed_up"]
-        if options["audio_ctx"]:
-            self.params.audio_ctx = options["audio_ctx"]
-        if options["prompt_tokens"]:
+        self.params.n_threads = options.get("n_threads", self.params.n_threads)
+        self.params.n_max_text_ctx = options.get("n_max_text_ctx", self.params.n_max_text_ctx)
+        self.params.offset_ms = options.get("offset_ms", self.params.offset_ms)
+        self.params.duration_ms = options.get("duration_ms", self.params.duration_ms)
+        self.params.translate = options.get("translate", self.params.translate)
+        self.params.no_context = options.get("no_context", self.params.no_context)
+        self.params.single_segment = options.get("single_segment", self.params.single_segment)
+        self.params.print_special = options.get("print_special", self.params.print_special)
+        self.params.print_progress = options.get("print_progress", self.params.print_progress)
+        self.params.print_realtime = options.get("print_realtime", self.params.print_realtime)
+        self.params.print_timestamps = options.get("print_timestamps", self.params.print_timestamps)
+        self.params.token_timestamps = options.get("token_timestamps", self.params.token_timestamps)
+        self.params.thold_pt = options.get("thold_pt", self.params.thold_pt)
+        self.params.thold_ptsum = options.get("thold_ptsum", self.params.thold_ptsum)
+        self.params.max_len = options.get("max_len", self.params.max_len)
+        self.params.max_tokens = options.get("max_tokens", self.params.max_tokens)
+        self.params.speed_up = options.get("speed_up", self.params.speed_up)
+        self.params.audio_ctx = options.get("audio_ctx", self.params.audio_ctx)
+        self.params.prompt_n_tokens = options.get("prompt_n_tokens", self.params.prompt_n_tokens)
+        self.params.language = options.get("language", self.params.language)
+        
+        if "prompt_tokens" in options:
             prompt_tokens_py = options["prompt_tokens"]
             arr_length = len(prompt_tokens_py)
             prompt_tokens_c = <int*>malloc(arr_length * sizeof(int))
             for i in range(arr_length):
                 prompt_tokens_c[i] = prompt_tokens_py[i]
             self.params.prompt_tokens = prompt_tokens_c
-        if options["prompt_n_tokens"]:
-            self.params.prompt_n_tokens = options["prompt_n_tokens"]
-        if options["language"]:
-            self.params.language = options["language"]
