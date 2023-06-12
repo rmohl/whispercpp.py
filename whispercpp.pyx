@@ -212,7 +212,6 @@ cdef class Whisper:
             for i in range(arr_length):
                 prompt_tokens_c[i] = prompt_tokens_py[i]
             self.params.prompt_tokens = prompt_tokens_c
-        if "prompt_n_tokens" in options:
-            self.params.prompt_n_tokens = options["prompt_n_tokens"]
+            self.params.prompt_n_tokens = arr_length
         if "language" in options:
-            self.params.language = options["language"]
+            self.params.language = <char*>options["language"]
