@@ -132,14 +132,15 @@ cdef class Whisper:
     def get_params(self):
         params = {}
         
-#         cdef int prompt_token_len = <int>(sizeof(self.params.prompt_tokens) / sizeof(int))
+        cdef int prompt_token_len = <int>(sizeof(self.params.prompt_tokens) / sizeof(int))
 
-#         print("len: " + str(prompt_token_len))
-#         cdef int i
-#         for i in range(prompt_token_len):
-#             print(i)
-#             print(self.params.prompt_tokens[i])
-#             prompt_tokens.append(self.params.prompt_tokens[i])
+        print("len: " + str(prompt_token_len))
+        cdef int i
+        prompt_tokens = []
+        for i in range(prompt_token_len):
+            print(i)
+            print(self.params.prompt_tokens[i])
+            prompt_tokens.append(self.params.prompt_tokens[i])
         
         params.update({
             "n_threads": self.params.n_threads,
@@ -160,6 +161,7 @@ cdef class Whisper:
             "max_tokens": self.params.max_tokens,
             "speed_up": self.params.speed_up,
             "audio_ctx": self.params.audio_ctx,
+            "prompt_tokens": self.params.prompt_tokens,
             "prompt_n_tokens": self.params.prompt_n_tokens,
             "language": self.params.language
         })
