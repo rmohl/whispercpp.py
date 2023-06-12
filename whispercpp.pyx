@@ -166,6 +166,7 @@ cdef class Whisper:
         return params
     
     def set_params(self, options):
+        cdef int* prompt_tokens_c
         
         if options["n_threads"]:
             self.params.n_threads = options["n_threads"]
@@ -206,7 +207,7 @@ cdef class Whisper:
         if options["prompt_tokens"]:
             prompt_tokens_py = options["prompt_tokens"]
             arr_length = len(prompt_tokens_py)
-            cdef int* prompt_tokens_c = malloc(sizeof(int)*arr_length)
+            prompt_tokens_c = malloc(sizeof(int)*arr_length)
             for i in range(arr_length):
                 prompt_tokens_c[i] = prompt_tokens_py[i]
             self.params.prompt_tokens = prompt_tokens_c
