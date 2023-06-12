@@ -133,15 +133,16 @@ cdef class Whisper:
         params = {}
         prompt_tokens = []
         
+        # getting prompt_tokens
         cdef int prompt_token_len = <int>(sizeof(self.params.prompt_tokens) / sizeof(int))
-
-        print("len: " + str(prompt_token_len))
         cdef int i
         for i in range(prompt_token_len):
-            print(i)
-            print(<int>self.params.prompt_tokens[i])
             prompt_tokens.append(<int>self.params.prompt_tokens[i])
         
+        # convert language bytes to str
+        decoded_lan = self.params.language.decode("UTF-8")
+        
+        # filling params dict
         params.update({
             "n_threads": self.params.n_threads,
             "n_max_text_ctx": self.params.n_max_text_ctx,
@@ -163,7 +164,7 @@ cdef class Whisper:
             "audio_ctx": self.params.audio_ctx,
             "prompt_tokens": prompt_tokens,
             "prompt_n_tokens": self.params.prompt_n_tokens,
-            "language": self.params.language
+            "language": decoded_lan
         })
         
         return params
