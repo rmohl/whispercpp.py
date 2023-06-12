@@ -167,7 +167,7 @@ cdef class Whisper:
         return params
     
     def set_params(self, options):
-        cdef int* prompt_tokens_c
+#         cdef int *prompt_tokens_c
         
         if options["n_threads"]:
             self.params.n_threads = options["n_threads"]
