@@ -204,7 +204,12 @@ cdef class Whisper:
         if options["audio_ctx"]:
             self.params.audio_ctx = options["audio_ctx"]
         if options["prompt_tokens"]:
-            self.params.prompt_tokens = <int*>options["prompt_tokens"]
+            prompt_tokens_py = options["prompt_tokens"]
+            arr_length = len(prompt_tokens_py)
+            cdef int* prompt_tokens_c = malloc(sizeof(int)*arr_length)
+            for i in range(arr_length):
+                prompt_tokens_c[i] = prompt_tokens_py[i]
+            self.params.prompt_tokens = prompt_tokens_c
         if options["prompt_n_tokens"]:
             self.params.prompt_n_tokens = options["prompt_n_tokens"]
         if options["language"]:
