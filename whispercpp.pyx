@@ -6,6 +6,7 @@ import numpy as np
 import requests
 import os
 from pathlib import Path
+from libc.stdlib cimport malloc
 
 MODELS_DIR = str(Path('~/.ggml-models').expanduser())
 print("Saving models to:", MODELS_DIR)
@@ -207,7 +208,7 @@ cdef class Whisper:
         if options["prompt_tokens"]:
             prompt_tokens_py = options["prompt_tokens"]
             arr_length = len(prompt_tokens_py)
-            prompt_tokens_c = malloc(sizeof(int)*arr_length)
+            prompt_tokens_c = <int*>malloc(arr_length * sizeof(int))
             for i in range(arr_length):
                 prompt_tokens_c[i] = prompt_tokens_py[i]
             self.params.prompt_tokens = prompt_tokens_c
