@@ -141,12 +141,6 @@ cdef class Whisper:
 #             print(<int>self.params.prompt_tokens[i])
             prompt_tokens.append(<int>self.params.prompt_tokens[i])
         
-        # convert language bytes to str
-#         language = self.params.language
-#         decoded_lan = language.decode("UTF-8")
-#         if not decoded_lan:
-#             raise Exception()
-        
         # filling params dict
         params.update({
             "n_threads": self.params.n_threads,
@@ -222,6 +216,4 @@ cdef class Whisper:
             self.params.prompt_tokens = prompt_tokens_c
             self.params.prompt_n_tokens = arr_length
         if "language" in options:
-            encoded_lan = options["language"].encode("UTF-8")
-            if encoded_lan:
-                self.params.language = encoded_lan
+            self.params.language = options["language"]
