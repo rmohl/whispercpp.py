@@ -161,7 +161,7 @@ cdef class Whisper:
             "max_tokens": self.params.max_tokens,
             "speed_up": self.params.speed_up,
             "audio_ctx": self.params.audio_ctx,
-            "prompt_tokens": self.params.prompt_tokens,
+            "prompt_tokens": prompt_tokens,
             "prompt_n_tokens": self.params.prompt_n_tokens,
             "language": self.params.language
         })
