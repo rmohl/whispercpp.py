@@ -215,4 +215,6 @@ cdef class Whisper:
             print(arr_length)
             self.params.prompt_n_tokens = arr_length
         if "language" in options:
-            self.params.language = options["language"].encode("UTF-8")
+            encoded_lan = options["language"].encode("UTF-8")
+            if encoded_lan:
+                self.params.language = encoded_lan
