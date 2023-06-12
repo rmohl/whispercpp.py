@@ -134,9 +134,11 @@ cdef class Whisper:
         prompt_tokens = []
         
         # getting prompt_tokens
-        cdef int prompt_token_len = <int>(sizeof(self.params.prompt_tokens) / sizeof(int))
+#         cdef int prompt_token_len = <int>(sizeof(self.params.prompt_tokens) / sizeof(int))
         cdef int i
-        for i in range(prompt_token_len):
+        for i in range(self.params.prompt_n_tokens):
+            print(i)
+            print(<int>self.params.prompt_tokens[i])
             prompt_tokens.append(<int>self.params.prompt_tokens[i])
         
         # convert language bytes to str
